@@ -1,0 +1,12 @@
+privilegeTargets:
+  'Neos\Flow\Security\Authorization\Privilege\Method\MethodPrivilege':
+    'Netlogix.Neos.AsyncWorkspaceActions:StatusController':
+      label: General access to all actions
+      matcher: 'method(Netlogix\Neos\AsyncWorkspaceActions\Controller\StatusController->(?!initialize).*Action())'
+
+roles:
+  'Neos.Neos:AbstractEditor':
+    privileges:
+      -
+        privilegeTarget: 'Netlogix.Neos.AsyncWorkspaceActions:StatusController'
+        permission: GRANT

@@ -1,0 +1,19 @@
+-
+  name: 'Done Action'
+  uriPattern: 'neos/nlx-async-workspace-actions/{job}/done'
+  defaults:
+    '@package':    'Netlogix.Neos.AsyncWorkspaceActions'
+    '@controller': 'Status'
+    '@action':     'done'
+    '@format':     'json'
+  httpMethods: ['GET']
+
+-
+  name: 'Poll Action'
+  uriPattern: 'neos/nlx-async-workspace-actions/{job}/poll'
+  defaults:
+    '@package':    'Netlogix.Neos.AsyncWorkspaceActions'
+    '@controller': 'Status'
+    '@action':     'poll'
+    '@format':     'json'
+  httpMethods: ['GET']

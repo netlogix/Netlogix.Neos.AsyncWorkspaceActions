@@ -1,0 +1,21 @@
+{
+    "name": "netlogix/neos-asyncworkspaceactions",
+    "description": "Neos package that allows asynchronous execution of workspace actions (e.g. publishing)",
+    "type": "neos-package",
+    "version": "1.0.0",
+    "require": {
+        "flowpack/jobqueue-common": "^3.3",
+        "neos/flow": "^7.3",
+        "neos/neos-ui": "^7.3"
+    },
+    "autoload": {
+        "psr-4": {
+            "Netlogix\\Neos\\AsyncWorkspaceActions\\": "Classes"
+        }
+    },
+    "extra": {
+        "neos": {
+            "package-key": "Netlogix.Neos.AsyncWorkspaceActions"
+        }
+    }
+}

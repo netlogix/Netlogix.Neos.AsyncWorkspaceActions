@@ -1,0 +1,5 @@
+Netlogix:
+  Neos:
+    AsyncWorkspaceActions:
+      # Amount of nodes required to publish or discard asynchronously
+      nodeThreshold: 100

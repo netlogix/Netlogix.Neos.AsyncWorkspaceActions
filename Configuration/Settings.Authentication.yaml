@@ -1,0 +1,11 @@
+Neos:
+  Flow:
+    security:
+      authentication:
+        providers:
+          'Neos.Neos:Backend':
+            requestPatterns:
+              'Netlogix.Neos.AsyncWorkspaceActions:AllControllers':
+                pattern: 'ControllerObjectName'
+                patternOptions:
+                  controllerObjectNamePattern: 'Netlogix\Neos\AsyncWorkspaceActions\Controller\.*'

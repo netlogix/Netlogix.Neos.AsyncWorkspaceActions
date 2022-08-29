@@ -1,0 +1,9 @@
+Flowpack:
+  JobQueue:
+    Common:
+
+      queues:
+        'async-workspace-actions':
+          className: 'Flowpack\JobQueue\Common\Queue\FakeQueue'
+          options:
+            async: true
