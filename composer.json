@@ -1,8 +1,15 @@
 {
     "name": "netlogix/neos-asyncworkspaceactions",
     "description": "Neos package that allows asynchronous execution of workspace actions (e.g. publishing)",
+    "license": "MIT",
+    "keywords": [
+        "neos",
+        "neoscms",
+        "publishing",
+        "workspace",
+        "memory-limit"
+    ],
     "type": "neos-package",
-    "version": "1.0.0",
     "require": {
         "flowpack/jobqueue-common": "^3.3",
         "neos/flow": "^7.3",

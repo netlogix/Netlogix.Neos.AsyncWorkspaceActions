@@ -20,20 +20,20 @@ final class Version20220816151548 extends AbstractMigration
     public function up(Schema $schema): void
     {
         $this->abortIf(
-            !$this->connection->getDatabasePlatform() instanceof \Doctrine\DBAL\Platforms\MariaDb1027Platform,
-            "Migration can only be executed safely on '\Doctrine\DBAL\Platforms\MariaDb1027Platform'."
+            !$this->connection->getDatabasePlatform() instanceof \Doctrine\DBAL\Platforms\MySqlPlatform,
+            "Migration can only be executed safely on '\Doctrine\DBAL\Platforms\MySqlPlatform'."
         );
 
-        $this->addSql('CREATE TABLE netlogix_neos_asyncWorkspaceActions_domain_model_job (identifier CHAR(36) NOT NULL, feedback LONGTEXT NOT NULL COMMENT \'(DC2Type:json)\', status VARCHAR(255) NOT NULL DEFAULT \'\', PRIMARY KEY(identifier)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
+        $this->addSql('CREATE TABLE netlogix_neos_asyncworkspaceactions_domain_model_job (identifier CHAR(36) NOT NULL, feedback LONGTEXT NOT NULL COMMENT \'(DC2Type:json)\', status VARCHAR(255) NOT NULL DEFAULT \'\', PRIMARY KEY(identifier)) DEFAULT CHARACTER SET utf8mb4 COLLATE `utf8mb4_unicode_ci` ENGINE = InnoDB');
     }
 
     public function down(Schema $schema): void
     {
         $this->abortIf(
-            !$this->connection->getDatabasePlatform() instanceof \Doctrine\DBAL\Platforms\MariaDb1027Platform,
-            "Migration can only be executed safely on '\Doctrine\DBAL\Platforms\MariaDb1027Platform'."
+            !$this->connection->getDatabasePlatform() instanceof \Doctrine\DBAL\Platforms\MySqlPlatform,
+            "Migration can only be executed safely on '\Doctrine\DBAL\Platforms\MySqlPlatform'."
         );
 
-        $this->addSql('DROP TABLE netlogix_neos_asyncWorkspaceActions_domain_model_job');
+        $this->addSql('DROP TABLE netlogix_neos_asyncworkspaceactions_domain_model_job');
     }
 }
