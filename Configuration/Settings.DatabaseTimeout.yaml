@@ -1,0 +1,7 @@
+Netlogix:
+  Cli:
+    IncreaseDatabaseTimeout:
+      timeouts:
+        'job:execute': 3600
+        'workspace:publish': 3600
+        'workspace:discard': 3600
