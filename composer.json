@@ -14,7 +14,7 @@
         "flowpack/jobqueue-common": "^3.3",
         "neos/flow": ">= 7.3 < 9.0",
         "neos/neos-ui": ">= 7.3 < 9.0",
-        "netlogix/cli-increasedatabasetimeout": "^1.0"
+        "netlogix/cli-increasedatabasetimeout": "^1.0 || dev-main"
     },
     "autoload": {
         "psr-4": {
