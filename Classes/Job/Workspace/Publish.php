@@ -7,6 +7,7 @@ use Flowpack\JobQueue\Common\Job\JobInterface;
 use Flowpack\JobQueue\Common\Queue\Message;
 use Flowpack\JobQueue\Common\Queue\QueueInterface;
 use GuzzleHttp\Psr7\Uri;
+use InvalidArgumentException;
 use Neos\ContentRepository\Domain\Repository\WorkspaceRepository;
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\I18n\Translator;
@@ -121,17 +122,15 @@ class Publish implements JobInterface
 
     public function execute(QueueInterface $queue, Message $message): bool
     {
-        $job = $this->jobRepository->findByIdentifier($this->jobIdentifier);
-        if (!$job instanceof Job) {
-            throw new \InvalidArgumentException(sprintf('No job with identifier "%s" found', $this->jobIdentifier),
+        if (!$this->jobRepository->findByIdentifier($this->jobIdentifier) instanceof Job) {
+            throw new InvalidArgumentException(
+                sprintf('No job with identifier "%s" found', $this->jobIdentifier),
                 1660661997);
         }
 
         try {
             $this->publish();
         } catch (\Throwable $t) {
-            $job->setStatus(Job::STATUS_DONE);
-
             $error = new Error();
             $error->setMessage($t->getMessage());
 
@@ -143,6 +142,7 @@ class Publish implements JobInterface
         );
         $this->feedbackCollection->setControllerContext($controllerContext);
 
+        $job = $this->jobRepository->findByIdentifier($this->jobIdentifier);
         $job->setFeedback($this->feedbackCollection->jsonSerialize());
         $job->setStatus(Job::STATUS_DONE);
         $this->jobRepository->update($job);
