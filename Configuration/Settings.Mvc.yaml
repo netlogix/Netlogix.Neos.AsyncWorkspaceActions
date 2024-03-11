@@ -2,4 +2,5 @@ Neos:
   Flow:
     mvc:
       routes:
-        'Netlogix.Neos.AsyncWorkspaceActions': before Neos.Neos
+        'Netlogix.Neos.AsyncWorkspaceActions':
+          position: 'before Neos.Neos'
