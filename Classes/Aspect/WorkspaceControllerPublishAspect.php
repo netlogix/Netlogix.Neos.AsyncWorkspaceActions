@@ -12,9 +12,7 @@ use Neos\Flow\Persistence\PersistenceManagerInterface;
 use Neos\Flow\Utility\Algorithms;
 use Neos\Neos\Ui\ContentRepository\Service\NodeService;
 use Neos\Neos\Ui\Controller\BackendServiceController;
-use Neos\Neos\Ui\Domain\Model\Feedback\Messages\Success;
 use Neos\Neos\Ui\Domain\Model\FeedbackCollection;
-use Neos\Utility\ObjectAccess;
 use Netlogix\Neos\AsyncWorkspaceActions\Domain\Model\Job;
 use Netlogix\Neos\AsyncWorkspaceActions\Domain\Repository\JobRepository;
 use Netlogix\Neos\AsyncWorkspaceActions\Job\Workspace\Publish;
@@ -81,20 +79,10 @@ class WorkspaceControllerPublishAspect
         assert($controller instanceof BackendServiceController);
 
         $nodeContextPaths = $this->filterExistingContextPaths($joinPoint->getMethodArgument('nodeContextPaths'));
-        if (count($nodeContextPaths) === 0) {
-            $success = new Success();
-            $success->setMessage('No nodes to publish');
-            $this->feedbackCollection->add($success);
-
-            $view = ObjectAccess::getProperty($controller, 'view', true);
-            $view->assign('value', $this->feedbackCollection);
-
-            return;
-        }
+        $joinPoint->setMethodArgument('nodeContextPaths', $nodeContextPaths);
 
         $requestHandler = $this->bootstrap->getActiveRequestHandler();
-
-        if (!($requestHandler instanceof HttpRequestHandlerInterface) || count($nodeContextPaths) < $this->threshold) {
+        if (!($requestHandler instanceof HttpRequestHandlerInterface) || count($nodeContextPaths) === 0 || count($nodeContextPaths) < $this->threshold) {
             $joinPoint->getAdviceChain()->proceed($joinPoint);
             return;
         }
