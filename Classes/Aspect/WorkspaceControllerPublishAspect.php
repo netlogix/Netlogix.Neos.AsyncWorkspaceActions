@@ -81,6 +81,7 @@ class WorkspaceControllerPublishAspect
         assert($controller instanceof BackendServiceController);
 
         $nodeContextPaths = $this->filterExistingContextPaths($joinPoint->getMethodArgument('nodeContextPaths'));
+        $joinPoint->setMethodArgument('nodeContextPaths', $nodeContextPaths);
         if (count($nodeContextPaths) === 0) {
             $success = new Success();
             $success->setMessage('No nodes to publish');
