@@ -68,6 +68,12 @@ class Publish implements JobInterface
      */
     protected ControllerContextFactory $controllerContextFactory;
 
+    /**
+     * @var array
+     * @Flow\InjectConfiguration(path="", package="Neos.Neos.Ui")
+     */
+    protected array $neosUiSettings = [];
+
     public function __construct(
         string $jobIdentifier,
         array $nodeContextPaths,
@@ -159,7 +165,7 @@ class Publish implements JobInterface
             $this->publishingService->publishNode($node, $targetWorkspace);
 
             if ($node->getNodeType()->isAggregate()) {
-                $updateNodePreviewUrl = new UpdateNodePreviewUrl();
+                $updateNodePreviewUrl = new UpdateNodePreviewUrl($this->neosUiSettings['nextVersionPreviewBehavior'] ?? false);
                 $updateNodePreviewUrl->setNode($node);
                 $this->feedbackCollection->add($updateNodePreviewUrl);
             }
