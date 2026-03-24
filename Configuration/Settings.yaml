@@ -1,0 +1,13 @@
+Netlogix:
+  Neos:
+    AsyncWorkspaceActions:
+      # Amount of nodes required to publish or discard asynchronously
+      nodeThreshold: 100
+
+      polling:
+        # Amount of seconds to wait between retries
+        retryInterval: 5
+        # Use exponential backoff
+        exponentialBackoff: false
+        # Exponential backoff factor
+        factor: 2

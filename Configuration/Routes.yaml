@@ -17,3 +17,4 @@
     '@action':     'poll'
     '@format':     'json'
   httpMethods: ['GET']
+  appendExceedingArguments: true
